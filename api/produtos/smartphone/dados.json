@@ -1,0 +1,33 @@
+{
+    "id": "smartphone",
+    "nome": "Smartphone",
+    "preco":  2000,
+    "imagem": "./api/produtos/smartphone/smartphone.jpg",
+    "estoque": 10,
+    "Description": "Todas as questões de acessibilidade, de usabilidade e de segurança devem ser resolvidas. A equipe de desenvolvimento deverá ser capaz de responder a qualquer pergunta sobre o produto.",
+    "Avaliacao": [
+        {
+            "nome": "Fabio",
+            "nota": 10,
+            "descricao": "Gostei muito do produto, atendeu todas as minas necessidades"
+        },
+
+        {
+            "nome": "Marcos",
+            "nota": 8,
+            "descricao": "Gostei muito do produto, atendeu todas as minas necessidades"
+        },
+
+        {
+            "nome": "João",
+            "nota": 9,
+            "descricao": "Gostei muito do produto, atendeu todas as minas necessidades"
+        },
+
+        {
+            "nome": "Lucas",            
+            "nota": 10,
+            "descricao": "Gostei muito do produto, atendeu todas as minas necessidades"
+        }
+    ]
+}

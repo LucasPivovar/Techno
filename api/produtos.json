@@ -1,0 +1,26 @@
+[
+    {
+        "id": "smartphone",
+        "nome": "Smartphone",
+        "preco": 2000,
+        "imagem": "api/produtos/smartphone/smartphone.jpg"
+    },
+    {
+        "id": "laptop",
+        "nome": "notebook",
+        "preco": 1000,
+        "imagem": "api/produtos/laptop/notebook.jpg"
+    },
+    {
+        "id": "headphone",
+        "nome": "headphone",
+        "preco": 699,
+        "imagem": "api/produtos/headphone/headphone.jpg"
+    },
+    {
+        "id": "smartwatch",
+        "nome": "smartwatch",
+        "preco": 300,
+        "imagem": "api/produtos/smartwatch/smartwatch.jpg"
+    }
+]

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <section class="modal" v-if="produto" @click="fechar_produto">
+            <div class="modal_container">
+                <div class="modal_info">
+                    <div class="modal_img">
+                        <img v-bind:src="produto.imagem" class="modal_img">
+                    </div>
+                    <div class="modal_dados">
+                        <button @click="produto = false"class="modal_fechar">x</button>
+                        <span class="modal_preco">{{ produto.preco | numeroPreco }}</span>
+                        <h2 class="modal_titulo">{{ produto.nome }}</h2>
+                        <p>{{ produto.Description }}</p>
+                        <button class="add_btn">Adicionar Item</button>
+                    </div>
+                </div>
+                <div class="avaliacoes">
+                    <h2 class="avaliacoes_subtitulo">Avaliações</h2>
+                    <ul>
+                        <li v-for="item in produto.Avaliacao" class="avaliacao">
+                            <span class="avaliacao_nome">{{ item.nome }}</span> |
+                            <span class="avaliacao_nota">{{ item.nota }}</span>
+                            <p>{{ item.descricao }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="produtos">
+            <div v-for="item in produtos" @click="abrirModal(item.id)" class="produto" :key="item.id">
+                <img v-bind:src="item.imagem" class="produto_img">
+                <div class="produto_info">
+                    <span class="produto_preco">{{ item.preco | numeroPreco }}</span>
+                    <h2 class="produto_titulo">{{ item.nome }}</h2>
+                </div>
+            </div>
+        </section>
+
+        
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
