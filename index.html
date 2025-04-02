@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Techno</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="app">
+        <header class="header">
+            <img src="./assets/techno.svg" alt="" class="logo">
+            <div class="carrinho_menu" @click="carrinhoAtivo = true">{{carrinhoTotal | numeroPreco}} | {{carrinho.length}}</div>
+        </header>
+
+
         <section class="modal" v-if="produto" @click="fechar_produto">
             <div class="modal_container">
                 <div class="modal_info">
@@ -21,7 +27,10 @@
                         <span class="modal_preco">{{ produto.preco | numeroPreco }}</span>
                         <h2 class="modal_titulo">{{ produto.nome }}</h2>
                         <p>{{ produto.Description }}</p>
-                        <button class="add_btn">Adicionar Item</button>
+
+                        <button v-if="produto.estoque > 0" class="add_btn estocado" @click="adicionarItem">Adicionar Item</button>
+                        <button v-else class="add_btn esgotado" disabled>Produto Esgotado</button>
+
                     </div>
                 </div>
                 <div class="avaliacoes">
@@ -37,6 +46,7 @@
             </div>
         </section>
 
+
         <section class="produtos">
             <div v-for="item in produtos" @click="abrirModal(item.id)" class="produto" :key="item.id">
                 <img v-bind:src="item.imagem" class="produto_img">
@@ -47,7 +57,30 @@
             </div>
         </section>
 
-        
+        <section class="carrinho_modal" :class="{ativo: carrinhoAtivo}" @click="clickForaCarrinho">
+            <div class="carrinho_container">
+                <button class="carrinho_fechar" @click="carrinhoAtivo = false">x</button>
+                <h2 class="carrinho_titulo">Carrinho</h2>
+                <div v-if="carrinho.length > 0" class="carrinho">
+                    <ul class="carrinho_lista">
+                        <li v-for="(item, index) in carrinho" class="carrinho_item" :key="item.id">
+                            <p class="carrinho_nome">{{ item.nome }}</p>
+                            <p class="carrinho_preco">{{ item.preco | numeroPreco }}</p>
+                            <button @click="removerItem(index)" class="carrinho_remover">x</button>
+                        </li>
+                    </ul>
+
+                    <p class="carrinho_total">Total: {{carrinhoTotal | numeroPreco}}</p>
+                    <button class="carrinho_finalizar">Finalizar</button>
+                </div>
+                <p v-else>O carrinho esta vazio</p>
+
+            </div>
+        </section>
+
+        <div class="alerta" :class=" {ativo: alertaAtivo}">
+            <p class="alerta_mensagem">{{mensagemAlerta}}</p>
+        </div>
     </div>
 
     <script src="app.js"></script>
